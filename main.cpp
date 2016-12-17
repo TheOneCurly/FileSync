@@ -26,7 +26,7 @@ int main(int argc, char *argv[]){
     m_host->moveToThread(&hostThread);
     hostThread.start();
 
-    qDebug() << "Version 0.0.1";
+    qDebug() << "Starting...";
 
     return a.exec();
 }

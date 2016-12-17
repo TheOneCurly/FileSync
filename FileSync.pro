@@ -15,11 +15,29 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     host.cpp \
-    client.cpp
+    client.cpp \
+    torrentserver.cpp \
+    torrentclient.cpp \
+    trackerclient.cpp \
+    metainfo.cpp \
+    bencodeparser.cpp \
+    connectionmanager.cpp \
+    peerwireclient.cpp \
+    ratecontroller.cpp \
+    filemanager.cpp
 
 HEADERS  += mainwindow.h\
     host.h \
-    client.h
+    client.h \
+    torrentserver.h \
+    torrentclient.h \
+    trackerclient.h \
+    metainfo.h \
+    bencodeparser.h \
+    connectionmanager.h \
+    peerwireclient.h \
+    ratecontroller.h \
+    filemanager.h
 
 FORMS    += mainwindow.ui
 
