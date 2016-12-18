@@ -13,14 +13,14 @@ int main(int argc, char *argv[]){
     w.show();
 
     QThread clientThread;
-    Client *m_client = new Client();
+    Client *m_client = Client::getInstance();
     QObject::connect(&clientThread, SIGNAL(started()), m_client, SLOT(start()));
     QObject::connect(&clientThread, SIGNAL(finished()), m_client, SLOT(deleteLater()));
     m_client->moveToThread(&clientThread);
     clientThread.start();
 
     QThread hostThread;
-    Host *m_host = new Host();
+    Host *m_host = Host::getInstance();
     QObject::connect(&hostThread, SIGNAL(started()), m_host, SLOT(start()));
     QObject::connect(&hostThread, SIGNAL(finished()), m_host, SLOT(deleteLater()));
     m_host->moveToThread(&hostThread);
