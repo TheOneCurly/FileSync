@@ -45,7 +45,6 @@ private slots:
 signals:
     void publicAddressFound(const QString&);
     void appendToConsole(const QString&);
-
 };
 
 #endif // HOST_H

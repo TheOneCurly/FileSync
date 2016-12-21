@@ -116,8 +116,6 @@
      </item>
     </layout>
    </widget>
-   <zorder>horizontalLayoutWidget</zorder>
-   <zorder>connectLabel</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

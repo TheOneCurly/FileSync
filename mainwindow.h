@@ -4,6 +4,9 @@
 #include <QMainWindow>
 #include <QLayout>
 #include <QStringListModel>
+#include <QSettings>
+#include <QMessageBox>
+#include <QCloseEvent>
 
 #include "host.h"
 #include "client.h"
@@ -20,12 +23,20 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+protected:
+    void closeEvent(QCloseEvent *event) Q_DECL_OVERRIDE;
+
 private:
     Ui::MainWindow *ui;
     QStringListModel *addressModel;
 
     Host* host;
     Client* client;
+
+    void saveSettings();
+    void loadSettings();
+
+    bool doesUserWantToQuit();
 
 private slots:
     void publicIPFound(const QString&);

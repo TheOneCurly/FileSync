@@ -40,8 +40,3 @@ HEADERS  += mainwindow.h\
     filemanager.h
 
 FORMS    += mainwindow.ui
-
-#INCLUDEPATH += /usr/include
-
-unix:!macx: INCLUDEPATH += /usr/include
-win32: INCLUDEPATH += /usr/lib/mxe/usr/i686-w64-mingw32.static/include
