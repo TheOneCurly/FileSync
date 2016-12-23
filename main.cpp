@@ -1,11 +1,11 @@
 #include "mainwindow.h"
 #include <QtGlobal>
 #include <QApplication>
-#include <QStandardPaths>
 #include <QSettings>
 #include <QDebug>
 #include <QThread>
 
+#include "directoryinfomanager.h"
 #include "host.h"
 #include "client.h"
 
@@ -15,17 +15,17 @@ int main(int argc, char *argv[]){
     QCoreApplication::setOrganizationDomain("TheOneCurly");
     QCoreApplication::setApplicationName("FileSync");
 
+    qRegisterMetaType<DirectoryInfo>("DirectoryInfo");
+    qRegisterMetaType<DirectoryInfoManager>("DirectoryInfoManager");
+    qRegisterMetaType<QList<DirectoryInfo>>("QList<DirectoryInfo>");
+
+    qRegisterMetaTypeStreamOperators<DirectoryInfo>("DirectoryInfo");
+    qRegisterMetaTypeStreamOperators<DirectoryInfoManager>("DirectoryInfoManager");
+    qRegisterMetaTypeStreamOperators<QList<DirectoryInfo>>("QList<DirectoryInfo>");
+
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
-
-    // Check for user settings, default unset settings
-//    QSettings settings;
-//    settings.beginGroup("UserSettings");
-//    if(!settings.contains("BaseDirectory")){
-//        settings.setValue("BaseDirectory", QStandardPaths.writableLocation(QStandardPaths::AppDataLocation));
-//    }
-//    settings.endGroup();
 
     QThread clientThread;
     Client* m_client = Client::getInstance();
@@ -43,5 +43,10 @@ int main(int argc, char *argv[]){
 
     qDebug() << "Starting...";
 
-    return a.exec();
+    int status = a.exec();
+
+    m_client->deleteLater();
+    m_host->deleteLater();
+
+    return status;
 }

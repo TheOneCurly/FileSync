@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     connectionmanager.cpp \
     peerwireclient.cpp \
     ratecontroller.cpp \
-    filemanager.cpp
+    filemanager.cpp \
+    directoryinfomanager.cpp
 
 HEADERS  += mainwindow.h\
     host.h \
@@ -37,6 +38,7 @@ HEADERS  += mainwindow.h\
     connectionmanager.h \
     peerwireclient.h \
     ratecontroller.h \
-    filemanager.h
+    filemanager.h \
+    directoryinfomanager.h
 
 FORMS    += mainwindow.ui

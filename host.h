@@ -2,8 +2,11 @@
 #define HOST_H
 
 #include <QObject>
+#include <QSettings>
 #include <QMutex>
 #include <QMutexLocker>
+#include <QStandardPaths>
+#include <QDir>
 
 #include <QNetworkInterface>
 #include <QHostAddress>
@@ -13,6 +16,9 @@
 #include <QSslError>
 
 #include <QTcpServer>
+#include <QDataStream>
+
+#include "directoryinfomanager.h"
 
 class Host : public QObject
 {
@@ -34,6 +40,13 @@ private:
 
     QNetworkAccessManager* networkManager;
     QTcpServer* tcpServer;
+    QString basePathString;
+    QDir hostPath;
+
+    DirectoryInfoManager* m_directoryManager;
+
+    void loadSettings();
+    void saveSettings();
 
 private slots:
     void addressLookupFinished(QNetworkReply *);
@@ -41,6 +54,7 @@ private slots:
     void newConnnection();
     void acceptError(QAbstractSocket::SocketError);
     void connectionDisconnected();
+    void readyRead();
 
 signals:
     void publicAddressFound(const QString&);

@@ -2,12 +2,17 @@
 #define CLIENT_H
 
 #include <QObject>
+#include <QSettings>
 #include <QDebug>
 #include <QMutex>
 #include <QMutexLocker>
+#include <QStandardPaths>
+#include <QDir>
 
 #include <QTcpSocket>
 #include <QHostAddress>
+
+#include "directoryinfomanager.h"
 
 class Client : public QObject
 {
@@ -27,6 +32,13 @@ private:
     static QMutex m_instanceMutex;
 
     QTcpSocket* clientSocket;
+    QString basePathString;
+    QDir clientPath;
+
+    DirectoryInfoManager* m_directoryManager;
+
+    void loadSettings();
+    void saveSettings();
 
 private slots:
     void socketConnected();
